@@ -1,6 +1,13 @@
 #!/bin/bash
 ########################
-echo "Disabling swap"
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+NC='\033[0m' # No Color
+function printt(){
+  echo -e "${ORANGE}Setup: ${GREEN}$1${NC}"
+}
+########################
+printt "Disabling swap"
 swapoff -a
 
 search=\/swap.img
@@ -11,25 +18,25 @@ if [[ $search != "" && $replace != "" ]]; then
 fi
 
 ########################
-echo "Installing docker"
+printt "Installing docker"
 apt install docker.io -y
 
 ########################
-echo "Installing cURL"
+printt "Installing cURL"
 which curl &> /dev/null || apt install apt-transport-https curl -y
 
 ########################
-echo "Adding repository key for Kubernetes"
+printt "Adding repository key for Kubernetes"
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add
 
 ########################
-echo "Adding Kubernetes repository"
+printt "Adding Kubernetes repository"
 apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main" -y
 apt update
 
 ########################
-echo "Install Kubernetes"
+printt "Install Kubernetes"
 apt install kubeadm kubelet kubectl kubernetes-cni -y
 
 ########################
-echo "Kubernetes installation complete!"
+printt "Kubernetes installation complete!"
