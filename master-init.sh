@@ -18,7 +18,8 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 
 ########################
 printt "Apply Calico config"
-kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+# kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/master/manifests/calico.yaml
 
 ########################
 printt "Master Node Init Complete!"
