@@ -24,7 +24,7 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add
 
 ########################
 echo "Adding Kubernetes repository"
-apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main" -y
 apt update
 
 ########################
@@ -32,4 +32,4 @@ echo "Install Kubernetes"
 apt install kubeadm kubelet kubectl kubernetes-cni -y
 
 ########################
-echo "Kubernetes installation complete!
+echo "Kubernetes installation complete!"
